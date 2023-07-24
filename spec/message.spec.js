@@ -6,4 +6,25 @@ const Command = require('../command.js');
 
 describe("Message class", function() {
 
+  it("throws error if a name is not passed into the constructor as a first parameter", function () {
+
+    expect( function() { new Message();}).toThrow(new Error('name required.'));
+    
+  });
+
+  it("constructor sets name", function () {
+
+    let nextMessage = new Message('name');
+    expect(nextMessage.name).toEqual('name');
+
+  });
+
+  it("contains a commands array passed into the constructor as 2nd arugument", function () {
+
+    let commands = [new Command('ARG1', 'ARG2'), new Command('ARG3', 'ARG4')];
+    let nextMessage = new Message('name', commands); 
+    expect(nextMessage.commands).toEqual([new Command('ARG1', 'ARG2'), new Command('ARG3', 'ARG4')]);
+
+  });
+
 });
