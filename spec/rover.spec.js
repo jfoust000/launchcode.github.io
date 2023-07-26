@@ -45,28 +45,28 @@ describe("Rover class", function() {
   it("responds correctly to status check command", function() {
 
     let rover = new Rover(98382);
-    let commands = [new Command('STATUS_CHECK')];
+    let commands = [new Command('MOVE', 99112), new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
     let message = new Message('Request Status Check', commands);
     let response = rover.receiveMessage(message);
     
-    expect(response.results[0].completed).toEqual(true);
-    expect(response.results[0].roverStatus.mode).toEqual('NORMAL');
-    expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
-    expect(response.results[0].roverStatus.position).toEqual(98382);
+    expect(response.results[2].completed).toEqual(true);
+    expect(response.results[2].roverStatus.mode).toEqual('LOW_POWER');
+    expect(response.results[2].roverStatus.generatorWatts).toEqual(110);
+    expect(response.results[2].roverStatus.position).toEqual(99112);
 
     // make sure rover properties are equal to 
     // the values in roverStatus properties above
 
-    expect(rover.mode).toEqual('NORMAL');
+    expect(rover.mode).toEqual('LOW_POWER');
     expect(rover.generatorWatts).toEqual(110);
-    expect(rover.position).toEqual(98382);
+    expect(rover.position).toEqual(99112);
 
   });
 
   it("responds correctly to mode change command", function() {  
     
     // check response when setting mode to LOW_POWER
-    
+
     let rover = new Rover(98382);
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
     let message = new Message('Request Mode Change', commands);
