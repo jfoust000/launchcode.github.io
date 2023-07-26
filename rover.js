@@ -52,7 +52,7 @@ class Rover {
    
          }
 
-      };
+      }; 
      
       // move object with properties 'completed' and position to store value of new position
      
@@ -74,12 +74,12 @@ class Rover {
      
       // unknownCommand object in case we receive an unkown command that is not supported. We freeze it to prevent it from being modified.
      
-      const unknownCommand = Object.freeze(Object.keys({
+      const unknownCommand = Object.freeze({
 
          completed: false,
          errorMessage: "Unknown command received"
 
-      }));
+      });
      
       // response object to return the results of the commands received
       // results is an array that will hold the above objects. 

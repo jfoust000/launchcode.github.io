@@ -54,6 +54,9 @@ describe("Rover class", function() {
     expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
     expect(response.results[0].roverStatus.position).toEqual(98382);
 
+    // make sure rover properties are equal to 
+    // the values in roverStatus properties above
+
     expect(rover.mode).toEqual('NORMAL');
     expect(rover.generatorWatts).toEqual(110);
     expect(rover.position).toEqual(98382);
@@ -63,6 +66,7 @@ describe("Rover class", function() {
   it("responds correctly to mode change command", function() {  
     
     // check response when setting mode to LOW_POWER
+    
     let rover = new Rover(98382);
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
     let message = new Message('Request Mode Change', commands);
@@ -73,6 +77,7 @@ describe("Rover class", function() {
     expect(rover.mode).toEqual('LOW_POWER');
 
     // check response when setting mode to NORMAL
+
     message.commands[0].commandType = 'MODE_CHANGE';
     message.commands[0].value = 'NORMAL';
     response = rover.receiveMessage(message);
