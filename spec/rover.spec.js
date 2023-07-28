@@ -78,7 +78,6 @@ describe("Rover class", function() {
 
     // check response when setting mode to NORMAL
 
-    message.commands[0].commandType = 'MODE_CHANGE';
     message.commands[0].value = 'NORMAL';
     response = rover.receiveMessage(message);
     
